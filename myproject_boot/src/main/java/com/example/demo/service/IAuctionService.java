@@ -11,9 +11,14 @@ public interface IAuctionService {
 	
 	List<Auction> getAllByBider(int biderid);
 	
+	Auction getHighBidByProduct(int productid);
+	
 	Auction getAuction(int auctionid);
+
+	Auction getAuctionByProductAndBider(int productid,int biderid);
 	
 	String saveAuction(Auction auctionbid);
 	
 	String deleteAuction(int auctionid);
+
 }

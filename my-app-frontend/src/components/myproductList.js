@@ -65,7 +65,7 @@ class myproductList extends Component {
     const renderAuthButton = () => {
         const username = sessionStorage.getItem('user_name');
       if (username != null) {
-        return <h2><button type='button' className="btn btn-primary mb-2" onClick={()=>this.addproductreq()} >add product</button></h2>;
+        return <h2><button type='button' className="btn btn-primary mb-2 offset-md-9" onClick={()=>this.addproductreq()} ><i className='far fa-plus-square'/> add product</button></h2>;
       } else {
         return <p><i className='text text-danger'>Please login</i><br/><br/><button type='button' className="btn btn-primary mb-2" onClick={()=>this.loginreq()} >login</button></p>;
       }
@@ -97,9 +97,9 @@ class myproductList extends Component {
                                     <h4></h4>
                                     <p><strong>Biding Start Amount : {products.min_bid}</strong></p>
                                     <div className='text-center' >
-                                        <button type='button' className="btn btn-primary mb-2" onClick={()=>this.updateproductreq(products.product_id)}>Update</button>
+                                        <button type='button' className="btn btn-primary mb-2" onClick={()=>this.updateproductreq(products.product_id)}><i className='fas fa-edit'/>Update</button>
                                         &nbsp;&nbsp;
-                                        <button type='button' className="btn btn-danger mb-2" onClick={()=>deleteProduct(products.product_id)} >Delete</button>
+                                        <button type='button' className="btn btn-danger mb-2" onClick={()=>deleteProduct(products.product_id)} ><i className='fas fa-trash-alt' />Delete</button>
                                     </div>
                                 </div>                                
                                 </div> 

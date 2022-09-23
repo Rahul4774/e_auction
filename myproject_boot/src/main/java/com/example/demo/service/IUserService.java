@@ -13,4 +13,6 @@ public interface IUserService {
 	User getUser(int id);
 	
 	User authenticate(User user);
+	
+	String deleteUser(int id);
 }

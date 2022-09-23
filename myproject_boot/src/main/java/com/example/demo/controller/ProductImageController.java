@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
-
-
 import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +27,10 @@ import com.example.demo.service.IProductImageService;
 @RequestMapping("/api/upload")
 @Validated
 public class ProductImageController {
+	
+	public ProductImageController() {
+		System.out.println("product image controller constructor");
+	}
 	
 	@Autowired
 	private IProductImageService productImgService;

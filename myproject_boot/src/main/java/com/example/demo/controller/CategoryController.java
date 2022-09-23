@@ -19,6 +19,10 @@ import com.example.demo.service.ICategoryService;
 @Validated
 public class CategoryController {
 	
+	public CategoryController() {
+		System.out.println("category controller constructor");
+	}
+	
 	@Autowired
 	private ICategoryService categoryService;
 	

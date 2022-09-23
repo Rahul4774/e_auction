@@ -13,6 +13,8 @@ import UpdateProduct from './components/UpdateProduct';
 import myproductlist from './components/myproductList';
 import productCard from './components/productcard';
 import viewcard from './components/viewCard';
+import adminpage from './components/adminpage';
+import staffpage from './components/staffpage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="/aboutus" component={aboutus}/>
             <Route path="/help" component={help}/>
             <Route path="/faq" component={faq}/>
+            <Route path="/admin" component={adminpage} />
+            <Route path="/staff" component={staffpage} />
             <Route path="/product" component={productCard}/>
             <Route path="/myproduct" component={myproductlist}/>
             <Route path="/login" component={loginform} />

@@ -9,21 +9,30 @@ function logout(){
 function loginbtn(){
   var username = sessionStorage.getItem('user_name');
   if(username != undefined){
-    return  <div className='offset-md-7'>
+    return  <div className='offset-md-6'>
               <i className='fas fa-id-card-alt text-light p-2'/>
               <b className='text-success '>{username}</b> 
               &nbsp; &nbsp;
-              <button className='btn btn-danger' onClick={()=>logout()} >Logout</button>
+              <button className='btn btn-danger' onClick={()=>logout()} >Logout&nbsp;<i className='fas fa-power-off'></i></button>
             </div>;
   }
   else{
-    return  <a href='/login' className='btn btn-primary offset-md-7' role="button">Login</a>;
+    return  <a href='/login' className='btn btn-primary offset-md-7' role="button"><i className='fas fa-user-check'/> Login</a>;
+  }
+}
+
+function rolebase(){
+  var role = sessionStorage.getItem("user_role");
+  if(role === "ADMIN"){
+    return <a className='nav-item nav-link' href='/admin'><i className='fas fa-user-secret'/> ADMIN</a>;
+  }
+  if(role === "STAFF"){
+    return <a className='nav-item nav-link' href='/staff'><i className='fas fa-user-tie'/> STAFF</a>;
   }
 }
 
 export default function Navbar() {
 
-  
 
     return (<>
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark' >
@@ -32,11 +41,13 @@ export default function Navbar() {
               <div className='navbar-nav'>
               <a className='nav-item nav-link' href='/product'>Home</a>
               <a className='nav-item nav-link' href='/myproduct'>MY Products</a>
+              {
+                rolebase()
+              }
               <a className='nav-item nav-link' href='/aboutus'>About Us</a>
               <a className='nav-item nav-link' href='/help'>Help</a>
               <a className='nav-item nav-link' href='/faq'>FAQ</a>
             </div>
-
             {
               loginbtn()
             }

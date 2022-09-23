@@ -21,6 +21,7 @@ class loginform extends Component {
 
   componentDidMount(){
 
+
   }
 
   authenticateLogin = (e) => {
@@ -36,15 +37,23 @@ class loginform extends Component {
             sessionStorage.setItem("user_dob",res.data.dob);
             sessionStorage.setItem("user_mail",res.data.mail);
             sessionStorage.setItem("user_mobile",res.data.mobile);
+            sessionStorage.setItem("user_role",res.data.role);
 
-            
+            if(res.data.role === "ADMIN"){
+              this.props.history.push('/');
+            }
+            if(res.data.role === "STAFF"){
+              this.props.history.push('/');
+            }
+            if(res.data.role === "USER"){
+              this.props.history.push('/');
+            }
         }
         });
       }
       else{this.setState({errormsg: "please insert password"});}
     }
     else{this.setState({errormsg: "please insert email"});}
-    this.props.history.push('/');
   }
 
   cancel(){

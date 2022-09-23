@@ -38,13 +38,18 @@ public class AuctionController {
 	}
 	
 	@GetMapping("/product/{product_id}")
-	public List<Auction> getAllProductbids(@PathVariable int product_id){
-		return auctionservice.getAllByProduct(product_id);
+	public Auction getHighbidByProduct(@PathVariable int product_id){
+		return auctionservice.getHighBidByProduct(product_id);
 	}
 	
 	@GetMapping("/bider/{bider_id}")
 	public List<Auction> getAllBiderbids(@PathVariable int bider_id){
 		return auctionservice.getAllByBider(bider_id);
+	}
+	
+	@GetMapping("/productandbider/{product_id}/{bider_id}")
+	public Auction getAuctionByProductAndBider(@PathVariable int product_id , @PathVariable int bider_id){
+		return auctionservice.getAuctionByProductAndBider(product_id, bider_id);
 	}
 	
 	@GetMapping("/{auction_id}")

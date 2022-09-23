@@ -1,22 +1,14 @@
 package com.example.demo.pojos;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "auction")
@@ -89,6 +81,14 @@ public class Auction {
 	public String toString() {
 		return "Auction [auctionid=" + auctionid + ", productid=" + productid + ", biderid=" + biderid + ", bidamount="
 				+ bidamount + ", reqdate=" + reqdate + "]";
+	}
+	
+	public int compare( Auction two) {
+		if(this.getBidamount() == two.getBidamount())
+				return 0;
+		if(this.getBidamount() == two.getBidamount())
+				return -1;
+		return 1;
 	}
 	
 }

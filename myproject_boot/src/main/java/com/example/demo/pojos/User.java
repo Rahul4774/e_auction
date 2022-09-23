@@ -1,26 +1,18 @@
 package com.example.demo.pojos;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Length;
-
+import org.hibernate.validator.constraints.UniqueElements;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="user")
@@ -44,6 +36,7 @@ public class User {
 	@Column(length = 30)
 	@Email
 	@JsonProperty("mail")
+	@UniqueElements
 	private String mail;
 	
 	@Past(message = "date of birth must be in past")
@@ -51,13 +44,16 @@ public class User {
 	private LocalDate dob;
 	
 	@Column(length = 15)
-	@Pattern(regexp = "([0-9].{8,15})")
 	@JsonProperty("mobile")
 	private String mobile;
 	
 	@Column(length = 20)
-	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")
 	private String password;
+
+	@Column(name = "role" , columnDefinition = "varchar(10) default 'USER' ")
+	@Enumerated(value = EnumType.STRING)
+	@JsonProperty("role")
+	private Role role;
 
 	public Integer getId() {
 		return id;
@@ -115,10 +111,19 @@ public class User {
 		this.password = password;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", address=" + address + ", mail=" + mail + ", dob=" + dob
-				+ ", mobile=" + mobile + "]";
+				+ ", mobile=" + mobile + ", role=" + role + "]";
 	}
+	
 	
 }

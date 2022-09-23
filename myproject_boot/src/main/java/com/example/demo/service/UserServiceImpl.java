@@ -40,4 +40,11 @@ public class UserServiceImpl implements IUserService {
 		return userRepo.getUserByMailAndPassword(user.getMail(),user.getPassword());
 	}
 
+	@Override
+	public String deleteUser(int id) {
+		userRepo.deleteById(id);
+		return "User Removed";
+		
+	}
+
 }

@@ -92,7 +92,7 @@ class productlist extends Component {
                                     <i>Auction End Date : {products.closing_date}</i></p>
                                     <p><strong>Biding Start Amount : {products.min_bid}</strong></p>
                                     
-                                    <a onClick={()=>this.view(products.product_id)}><i class="far fa-eye fa-3x"/></a>
+                                    <a className='link-info' onClick={()=>this.view(products.product_id)}><i class="far fa-eye fa-3x"/></a>
                                 </div>                                
                                 </div> 
                             </div>       

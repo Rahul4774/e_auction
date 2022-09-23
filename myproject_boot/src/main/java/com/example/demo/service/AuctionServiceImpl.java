@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -40,7 +41,7 @@ public class AuctionServiceImpl implements IAuctionService {
 		if(a == null) {
 			return "auction registration failed";
 		}
-		return "auction registered successfully.";
+		return "Bid Registered";
 	}
 
 
@@ -59,4 +60,14 @@ public class AuctionServiceImpl implements IAuctionService {
 		return auctionRepo.findAuctionByBiderid(biderid);
 	}
 
+	@Override
+	public Auction getHighBidByProduct(int productid) {
+		return auctionRepo.getFirstAuctionByProductidOrderByBidamountDesc(productid);
+	}
+
+	@Override
+	public Auction getAuctionByProductAndBider(int productid, int biderid) {
+		return auctionRepo.getFirstAuctionByProductidAndBiderid(productid, biderid);
+	}
+	
 }

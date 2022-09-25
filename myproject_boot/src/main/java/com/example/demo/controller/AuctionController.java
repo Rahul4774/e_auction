@@ -42,6 +42,11 @@ public class AuctionController {
 		return auctionservice.getHighBidByProduct(product_id);
 	}
 	
+	@GetMapping("/getallbyprod/{product_id}")
+	public List<Auction> getAllByProduct(@PathVariable int product_id){
+		return auctionservice.getAllByProduct(product_id);
+	}
+	
 	@GetMapping("/bider/{bider_id}")
 	public List<Auction> getAllBiderbids(@PathVariable int bider_id){
 		return auctionservice.getAllByBider(bider_id);

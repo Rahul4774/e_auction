@@ -8,6 +8,8 @@ import axios from 'axios'
 
  const User_Rest_Url_getUserDetail = 'http://localhost:8080/api/user';
 
+ const Messages_Rest_Url_getUsersAllMessages = 'http://localhost:8080/api/mes';
+
 class userService {
 
   getUserAuthenticated(user){
@@ -24,6 +26,14 @@ class userService {
 
   getUserDetail(id){
     return axios.get(User_Rest_Url_getUserDetail + "/" + id);
+  }
+  
+  getUsersAllMessages(userid){
+    return axios.get(Messages_Rest_Url_getUsersAllMessages + "/" + userid);
+  }
+
+  sendMessage(message){
+    return axios.post(Messages_Rest_Url_getUsersAllMessages,message);
   }
 
 }

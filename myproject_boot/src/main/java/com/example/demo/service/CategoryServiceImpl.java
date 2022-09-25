@@ -28,4 +28,19 @@ public class CategoryServiceImpl implements ICategoryService {
 		return categoryRepo.findById(Catid).orElseThrow(() -> new ResourceNotFoundException("category not found"));
 	}
 
+	@Override
+	public String addCategory(Category category) {
+		categoryRepo.save(category);
+		return "Category Added";
+	}
+
+	@Override
+	public String deleteCategory(int Cat_id) {
+		if(categoryRepo.existsById(Cat_id)) {
+			categoryRepo.deleteById(Cat_id);
+			return "Catgory Deleted";
+		}
+		return "Category Not Found";
+	}
+
 }

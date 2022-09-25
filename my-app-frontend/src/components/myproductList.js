@@ -58,9 +58,15 @@ class myproductList extends Component {
         return imagelink; 
     }
 
-    render() {
+    soldOrNot(status){
+        if(status === "SOLD"){
+            return <img src='https://cdn-icons-png.flaticon.com/512/6188/6188726.png' className='img-fluid img-thumbnail rounded-circle w-25'/>;
+        }else{
+            return <img />;
+        }
+    }
 
-        
+    render() { 
 
     const renderAuthButton = () => {
         const username = sessionStorage.getItem('user_name');
@@ -86,6 +92,11 @@ class myproductList extends Component {
                             <div className='w-25 p-3' >
                                 <div className='card mycard' key={products.product_id} >
                                 <img src={this.getImage(products.img)} className='img-fluid img-mythumbnail card-img-top'/>
+                                <div>
+                                    {
+                                        this.soldOrNot(products.status)
+                                    }
+                                </div>
                                 <br/>
                                 <h5 className='card-title'>{products.name}</h5>
                                 <br/>

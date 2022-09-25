@@ -106,7 +106,7 @@ export default class AddProduct extends Component {
                                         <div className = "form-group">
                                             <label> product Name: </label>
                                             <input type="text" placeholder="product Name" name="name" className="form-control" maxLength="30" pattern='[a-z][A-Z]*'
-                                                value={this.state.name} onChange={this.onChange} required/>
+                                                value={this.state.name} onChange={this.onChange} style={{ textTransform: "uppercase" }} required/>
                                         </div>
                                         <div className = "form-group">
                                             <label> product details: </label>

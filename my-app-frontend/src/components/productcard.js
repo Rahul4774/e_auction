@@ -48,7 +48,13 @@ class productlist extends Component {
         this.props.history.push(`/view/${product_id}`);
     }
 
-
+    soldOrNot(status){
+        if(status === "SOLD"){
+            return <img src='https://cdn-icons-png.flaticon.com/512/6188/6188726.png' className='img-fluid img-thumbnail rounded-circle w-25'/>;
+        }else{
+            return <img />;
+        }
+    }
 
     render() {
         return (
@@ -81,7 +87,12 @@ class productlist extends Component {
                             products =>
                             <div className='w-25 p-3' >
                                 <div className='card mycard shadow' key={products.product_id} >
-                                <img src={this.getImage(products.img)} className='img-fluid img-mythumbnail card-img-top' />
+                                <img src={this.getImage(products.img)} className='img-fluid img-mythumbnail card-img-top'/>
+                                <div>
+                                    {
+                                        this.soldOrNot(products.status)
+                                    }
+                                </div>
                                 <br/>
                                 <h5 className='card-title'>{products.name}</h5>
                                 <br/>

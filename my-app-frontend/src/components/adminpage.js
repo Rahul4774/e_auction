@@ -3,56 +3,21 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import userService from '../services/user.service';
 import trialservice from '../services/trialservice';
 
-function showHideUserTable(){
-    document.getElementById("usertable").style.display="block";
-    document.getElementById("producttable").style.display="none";
-    document.getElementById("winnertable").style.display="none";
 
-}
-
-function showHideProductTable(){
-    document.getElementById("usertable").style.display="none";
-    document.getElementById("winnertable").style.display="none";
-    document.getElementById("producttable").style.display="block";
-}
-
-function showHideWinnerTable(){
-    document.getElementById("usertable").style.display="none";
-    document.getElementById("producttable").style.display="none";
-    document.getElementById("winnertable").style.display="block";
-}
 
 class adminpage extends Component {
 
     constructor(props){
         super(props)
-
-        this.state = {
-            users :[],
-            products :[],
-            winners :[]
-        }
-
     }
 
     componentDidMount(){
         var urole = sessionStorage.getItem("user_role");
         if(urole === "ADMIN"){
-        userService.getAllUsers().then((res) => {
-            this.setState({users: res.data});
-        });
-        trialservice.getProducts().then((res) => {
-            this.setState({products: res.data});
-        });
+            console.log("hello admin");
         }else{
             this.props.history.push('/login');
         }
-    }
-
-    maillink(mailurl){
-        var ml = "mailto:";
-        return (ml + mailurl);
-        
     }
 
     render() {
@@ -60,99 +25,37 @@ class adminpage extends Component {
             
             <div className='text-center'>
                 <div className='col-md-10 offset-md-1 rounded p-2 mt-2 shadow'>
+                    <h5 className='text-success'>Welcome {sessionStorage.getItem("user_name")}</h5>
+                </div>
+                <div className='col-md-10 offset-md-1 rounded p-2 mt-2 shadow'>
                     <div className='container'>
-                        <button id='btnuser' type='button' className='btn btn-active btn-info' onClick={showHideUserTable} >show Users</button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id='btnproduct' type='button' className='btn btn-active btn-info' onClick={showHideProductTable}>show Products</button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id='btnwinner' type='button' className='btn btn-active btn-info'onClick={showHideWinnerTable}>show Winners</button>
-                    </div>
-                    <br/>
-                    <br/>
-                        <div>
-                            <table id='usertable' className='table table-hover table-bordered'>
-                                <thead><td colSpan="12"style={{ fontSize: 30 }} ><b>User's</b></td></thead>
-                                <thead className='table-dark'>
-                                    <tr>
-                                    <td>ID No.</td>
-                                    <td>Name</td>
-                                    <td>Address</td>
-                                    <td>Mail</td>
-                                    <td>Contact</td>
-                                    <td className='text-danger'><small>Remove User</small></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        this.state.users.map(
-                                            user => 
-                                            <tr key={user.id}>
-                                                <td>{user.id}-<small className='' style={{ fontSize: 10 }}>{user.role}</small></td>
-                                                <td>{user.name}</td>
-                                                <td>{user.address}</td>
-                                                <td>{user.mail}</td>
-                                                <td>{user.mobile}</td>
-                                                <td className='text-danger'><i className='fas fa-user-minus'/></td>
-                                            </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                </div>
-
-                <div className='text-center'>
-                    <div className='col-md-10 offset-md-1 rounded p-2 mt-2 shadow'>                        
-                        <div className='container'>
-                            <table id='producttable' className='table table-hover table-bordered'>
-                                <thead><td colSpan="12" style={{ fontSize: 30 }} ><b>Product's</b></td></thead>
-                                <thead className='table-primary'>
-                                    <td><b>ID No.</b></td>
-                                    <td><b>Name</b></td>
-                                    <td><b>Details</b></td>
-                                    <td><b>End Date</b></td>
-                                    <td><b>Status</b></td>
-                                    <td className='text-danger'><small>Remove Product</small></td>
-                                </thead>
-                                <tbody>
-                                    {
-                                        this.state.products.map(
-                                            product => 
-                                            <tr key={product.product_id}>
-                                                <td>{product.product_id}</td>
-                                                <td>{product.name}</td>
-                                                <td>{product.details}</td>
-                                                <td>{product.closing_date}</td>
-                                                <td>{product.status}</td>
-                                                <td className='text-danger'><i className='fas fa-trash'/></td>
-                                            </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                        <div className='row'>
+                            <div className='col-md-4 '>
+                                <a href='/usertab' className='text-muted'><img src='http://localhost:8080/api/upload/man.png' className='img-thumbnail w-50 p-3 rounded'/><h3>USERS</h3></a>
+                            </div>
+                            <div className='col-md-4'>
+                                <a href='/category' className='text-muted'><img src='http://localhost:8080/api/upload/categories.png' className='img-thumbnail w-50 p-3 rounded'/><h3>CATEGORIES</h3></a>
+                            </div>
+                            <div className='col-md-4'>
+                                <a href='/prodtab' className='text-muted'><img src='http://localhost:8080/api/upload/box.png' className='img-thumbnail w-50 p-3 rounded'/><h3>PRODUCTS</h3></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className='text-center'>
-                    <div className='col-md-10 offset-md-1 rounded p-2 mt-2 shadow'>                        
-                        <div className='container'>
-                            <table id='winnertable' className='table table-hover'>
-                                <thead><td colSpan="12" style={{ fontSize: 30 }} ><b>winners's</b></td></thead>
-                                <thead className='table-primary'>
-                                    <td><b>ID No.</b></td>
-                                    <td><b>Name</b></td>
-                                    <td><b>Details</b></td>
-                                    <td><b>End Date</b></td>
-                                    <td><b>Status</b></td>
-                                    <td className='text-danger'><small>Congratulate Winners</small></td>
-                                </thead>
-                                <tbody>
-                                    {
-                                    
-                                    }
-                                </tbody>
-                            </table>
+                    <hr/>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col-md-3'>
+                                <a href='/auctiontab' className='text-muted'><img src='http://localhost:8080/api/upload/auctions.png' className='img-thumbnail w-50 p-3 rounded'/><h3>Auctions</h3></a>
+                            </div>
+                            <div className='col-md-3'>
+                                <a href='/productadd' className='text-muted'><img src='http://localhost:8080/api/upload/addpackage.png' className='img-thumbnail w-50 p-3 rounded'/><h3>ADD PRODUCT</h3></a>
+                            </div>
+                            <div className='col-md-3'>
+                                <a href='/categoryadd' className='text-muted'><img src='http://localhost:8080/api/upload/addcategories.png' className='img-thumbnail w-50 p-3 rounded'/><h3>ADD CATEGORIES</h3></a>
+                            </div>
+                            <div className='col-md-3'>
+                                <a href='/winnertab' className='text-muted'><img src='http://localhost:8080/api/upload/Winning.png' className='img-thumbnail w-50 p-3 rounded'/><h3>Winners</h3></a>
+                            </div>
                         </div>
                     </div>
                 </div>

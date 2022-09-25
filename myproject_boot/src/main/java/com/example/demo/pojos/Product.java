@@ -20,7 +20,6 @@ public class Product {
 	@JsonProperty("product_id")
 	private Integer productid;
 	
-	
 
 	@Column(name = "cat_id")
 	@JsonProperty("cat_id")
@@ -59,6 +58,94 @@ public class Product {
 	@JsonProperty("img")
 	private String img;
 
+	public Integer getProductid() {
+		return productid;
+	}
+
+	public void setProductid(Integer productid) {
+		this.productid = productid;
+	}
+
+	public Integer getCatid() {
+		return catid;
+	}
+
+	public void setCatid(Integer catid) {
+		this.catid = catid;
+	}
+
+	public Integer getSellerid() {
+		return sellerid;
+	}
+
+	public void setSellerid(Integer sellerid) {
+		this.sellerid = sellerid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	public double getMin_bid() {
+		return min_bid;
+	}
+
+	public void setMin_bid(double min_bid) {
+		this.min_bid = min_bid;
+	}
+
+	public LocalDate getOpening_date() {
+		return opening_date;
+	}
+
+	public void setOpening_date(LocalDate opening_date) {
+		this.opening_date = opening_date;
+	}
+
+	public LocalDate getClosing_date() {
+		return closing_date;
+	}
+
+	public void setClosing_date(LocalDate closing_date) {
+		this.closing_date = closing_date;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productid=" + productid + ", catid=" + catid + ", sellerid=" + sellerid + ", name=" + name
+				+ ", details=" + details + ", min_bid=" + min_bid + ", opening_date=" + opening_date + ", closing_date="
+				+ closing_date + ", status=" + status + ", img=" + img + "]";
+	}
+
+	
 	
 }
 //product_id | cat_id | seller_id | name |details | min_bid | opening_date | closing_date | status

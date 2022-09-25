@@ -7,4 +7,8 @@ public interface ICategoryService {
 	List<Category> getAllCategory();
 	
 	Category getCategory(int Catid);
+	
+	String addCategory(Category category);
+	
+	String deleteCategory(int Cat_id);
 }

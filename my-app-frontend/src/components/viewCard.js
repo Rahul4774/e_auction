@@ -20,7 +20,7 @@ export default class viewCard extends Component {
             opening_date:'',
             closing_date:'',
             min_bid:'',
-            status:'UNSOLD',
+            status:'',
             img:'',
             message:'',
             bid_amount:'',
@@ -80,13 +80,21 @@ export default class viewCard extends Component {
                     </div>;
         }
         else{
-            return  <div className='cart mt-4 align-items-center'>
-                        <button type="button" className='btn btn-info text-uppercase mybtn mr-2 px-2' onClick={this.submitHandler}><i className='fas fa-gavel'/>&nbsp;Bid On Product</button>
+            return  <div id='self' className='cart mt-4 align-items-center'>
+                        <button id='btnstat' type="button" className='btn btn-info text-uppercase mybtn mr-2 px-2' onClick={this.submitHandler}><i className='fas fa-gavel'/>&nbsp;Bid On Product</button>
                         &nbsp;&nbsp;&nbsp;
                         <a id='cancel' onClick={refreshPage}><i className='fas fa-recycle' style={{ fontSize: 24 }} /></a>
                     </div>;
         }
         
+    }
+
+    soldOrNot(){
+        if(this.state.status === "SOLD"){
+            return <img src='https://cdn-icons-png.flaticon.com/512/6188/6188726.png' className='img-fluid img-thumbnail rounded-circle w-25'/>;
+        }else{
+            return <img />;
+        }
     }
 
     getlastdate(){
@@ -96,6 +104,11 @@ export default class viewCard extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        if(this.state.status === "SOLD"){
+            document.getElementById('try').innerHTML = "Product is Already Sold";
+            document.getElementById('bidmsg').innerHTML = "";
+            return
+        }
         const username = sessionStorage.getItem('user_name');
         if(username != null){
             let auction = {auction_id: this.state.auction_id,product_id: this.state.product_id,bider_id: this.state.bider_id,bid_amount: this.state.bid_amount,req_date: new Date() }
@@ -110,7 +123,6 @@ export default class viewCard extends Component {
                 document.getElementById('bidmsg').innerHTML = "Your Bid Registered";
                 
             });
-            alert("Your Bid Registered");
             refreshPage();
         }
         else{
@@ -204,11 +216,7 @@ export default class viewCard extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <b>
-                                            {
-                                                this.getlastdate()
-                                            }
-                                        </b>
+                                        <b>{this.soldOrNot()}</b>
                                         <p className='about'>{this.state.details}</p>
                                         <div className='sizes mt-5'>
                                             <div>
@@ -223,9 +231,11 @@ export default class viewCard extends Component {
                                         <div>
                                             <p id='try' className='text-danger' ></p>
                                             </div>
-                                            {
-                                                this.selfProduct()
-                                            }
+                                            <div>
+                                                {
+                                                    this.selfProduct()
+                                                }
+                                            </div>
                                             <div>
                                                 <p id='bidmsg' className='text-success'></p>
                                             </div>

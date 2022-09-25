@@ -63,4 +63,11 @@ public class ProductController {
 	public List<Product> getProductByCategory(@PathVariable int cat_id){
 		return productService.getProductByCategory(cat_id);
 	}
+	
+	@GetMapping("/sold/{product_id}")
+	public String getProductSolded(@PathVariable int product_id) {
+		Product p = productService.getProductById(product_id);
+		p.setStatus("SOLD");
+		return productService.saveProduct(p);
+	}
 }

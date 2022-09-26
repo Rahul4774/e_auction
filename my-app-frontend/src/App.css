@@ -104,11 +104,29 @@ img.background {
 
 img.circle {
   display: block;
-  max-width: 50%;
+  max-width: 35%;
   height: auto;
   margin: 0 auto;
   border-radius: 5%;
 }
 
+img.notfound {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
+  filter: blur(1px);
+}
 
+.atcenter {
+  position: absolute;
+  padding: 20px;
+  right: 0;
+  top: 10%;
+  border-radius: 25px;
+  font-size: 150%;
+}
 

@@ -43,19 +43,19 @@ export default class viewCard extends Component {
                 status: product.status,
                 img: product.img
             });
-        });
-        trialservice.getBidbyProductId(this.state.product_id).then((res) => {
-            if(res.data.bid_amount >= this.state.min_bid){
-                this.setState({high_bid: res.data.bid_amount});
-            }
-            else{
-                this.setState({high_bid: this.state.min_bid});
-            }
-        });
-        trialservice.getAuctionByProductAndBider(this.state.product_id , this.state.bider_id).then((res) => {
-            if(this.state.product_id == res.data.product_id){
-                this.setState({auction_id: res.data.auction_id});
-            }
+            trialservice.getBidbyProductId(this.state.product_id).then((res) => {
+                if(res.data.bid_amount >= this.state.min_bid){
+                    this.setState({high_bid: res.data.bid_amount});
+                }
+                else{
+                    this.setState({high_bid: this.state.min_bid});
+                }
+            });
+            trialservice.getAuctionByProductAndBider(this.state.product_id , this.state.bider_id).then((res) => {
+                if(this.state.product_id == res.data.product_id){
+                    this.setState({auction_id: res.data.auction_id});
+                }
+            });
         });
     }
 
@@ -130,6 +130,8 @@ export default class viewCard extends Component {
         }
     }
 
+    
+
     countdown = setInterval(function() {
         const deadline = new Date("2023-01-01 00:00:00").getTime();
 	    var now = new Date().getTime();
@@ -160,7 +162,7 @@ export default class viewCard extends Component {
         return (
             
             <>
-                <div className='container mt-5 mb-5'>
+                <div className='container brdered mt-5 mb-5'>
                     <div className='row d-flex justify-content-center'>
                         <div className='col-md-10'>
                             <div className='card'>

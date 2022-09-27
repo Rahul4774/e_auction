@@ -9,6 +9,9 @@ import com.example.demo.pojos.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+	
+	public List<Product> findAllByOrderByStatusDesc();
+	
 	public List<Product> findByName(String name);
 	
 	public List<Product> findBySellerid(Integer sellerid);

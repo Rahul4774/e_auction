@@ -56,6 +56,11 @@ class winnerstab extends Component {
     }
 
     getWinnerWithProduct() {
+        if(this.state.winner_id <= 0){
+            document.getElementById("catmsg").innerHTML = "please Select Category First To Filter Products";
+            return
+        }
+        document.getElementById("catmsg").innerHTML = "";
         trialservice.getWinnerByWinnerId(this.state.winner_id).then((res) => {
             this.setState({winner: res.data});
             trialservice.getProductById(res.data.product_id).then((res) => {
@@ -138,7 +143,7 @@ class winnerstab extends Component {
                                     )
                                 }
                         </select>
-                        <br/>
+                        <p id="catmsg" className='text-danger'></p>
                         <button type='button' className="btn btn-primary mb-2 d-inline" onClick={this.getWinnerWithProduct.bind(this)} >search by winner</button>
                         <br/>
                     </div>

@@ -44,7 +44,6 @@ public class UserServiceImpl implements IUserService {
 	public String deleteUser(int id) {
 		userRepo.deleteById(id);
 		return "User Removed";
-		
 	}
 
 }

@@ -44,10 +44,10 @@ class staffpage extends Component {
                         </div>
                         <div className='row mt-2 p-2'>
                             <div className='col-md-3 offset-md-2'>
-                                <a href='/auctiontab' className='text-muted'><img src='http://localhost:8080/api/upload/auctions.png' className='img-thumbnail w-50 p-3 rounded'/><h3>Winner</h3></a>
+                                <a href='/auctiontab' className='text-muted'><img src='http://localhost:8080/api/upload/auctions.png' className='img-thumbnail w-50 p-3 rounded'/><h3>auction's</h3></a>
                             </div>
                             <div className='col-md-3 offset-md-2'>
-                                <a href='/winnertab' className='text-muted'><img src='http://localhost:8080/api/upload/winning.png' className='img-thumbnail w-50 p-3 rounded'/><h3>winners</h3></a>
+                                <a href='/winnertab' className='text-muted'><img src='http://localhost:8080/api/upload/winning.png' className='img-thumbnail w-50 p-3 rounded'/><h3>winner's</h3></a>
                             </div>
                         </div>
                     </div>

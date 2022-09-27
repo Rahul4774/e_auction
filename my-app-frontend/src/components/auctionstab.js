@@ -66,12 +66,16 @@ class auctionstab extends Component {
     }
 
     sortByProduct(){
+        if(this.state.product_id == undefined){
+            document.getElementById("catmsg").innerHTML = "please Select Product";
+            return
+        }
+        document.getElementById("catmsg").innerHTML = "";
         trialservice.getBidbyProductId(this.state.product_id).then((res) => {
             this.setState({auction_id: res.data.auction_id});
             this.setState({bider_id : res.data.bider_id});
             this.setState({bid_amount: res.data.bid_amount});
             this.setState({req_date: res.data.req_date});
-
         });
         trialservice.getProductById(this.state.product_id).then((res) => {
             this.setState({product_id: res.data.product_id});
@@ -149,7 +153,7 @@ class auctionstab extends Component {
                                 }
                         </select>
                     </div>
-                    <br/>
+                    <p id="catmsg" className='text-danger'></p>
                     <div>
                         <button type='button' className="btn btn-primary mb-2" onClick={this.sortByProduct.bind(this)} >search by product</button>
                     </div>

@@ -41,9 +41,6 @@ class UpdateProduct extends Component {
                     img: product.img
                 });
             });
-
-            console.log(this.props);
-
             trialservice.getCategory().then( (res) =>{
                 this.setState({categories: res.data});
             });
@@ -51,7 +48,6 @@ class UpdateProduct extends Component {
     saveOrUpdateProduct = (e) => {
         e.preventDefault();
         let product = {product_id: this.state.product_id, cat_id: this.state.cat_id,seller_id: this.state.seller_id, name: this.state.name, details: this.state.details, opening_date: this.state.opening_date, closing_date: this.state.closing_date,min_bid: this.state.min_bid,status: this.state.status,img: this.state.img };
-        console.log('product => ' + JSON.stringify(product));
         // step 5
         trialservice.createProduct(product).then(res =>{
         this.props.history.push('/myproduct');
@@ -82,7 +78,6 @@ class UpdateProduct extends Component {
         event.preventDefault();
         var url = "http://localhost:8080/api/upload";
 
-        console.log(this.state.image);
         const formdata = new FormData();
         formdata.append("image",this.state.image);
         axios.post(url,formdata).then((res) =>{

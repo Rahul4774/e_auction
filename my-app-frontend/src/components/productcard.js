@@ -9,7 +9,7 @@ class productlist extends Component {
         this.state={
             products :[],
             categories: [],
-            cat_id: ''
+            cat_id:''
 
         }
     }
@@ -23,10 +23,14 @@ class productlist extends Component {
         trialservice.getCategory().then( (res) =>{
             this.setState({categories: res.data});
         });
-        console.log(this.state.products);
     }
 
     categorysort(){
+        if(this.state.cat_id <= 0){
+            document.getElementById("catmsg").innerHTML = "please Select Category First To Filter Products";
+            return
+        }
+        document.getElementById("catmsg").innerHTML = "";
         trialservice.getProductByCategory(this.state.cat_id).then((res)=>{
             this.setState({products: res.data});
         });
@@ -74,7 +78,7 @@ class productlist extends Component {
                                 }
                         </select>
                     </div>
-                    <br/>
+                    <p id="catmsg" className='text-danger'></p>
                     <div>
                         <button type='button' className="btn btn-primary mb-2" onClick={this.categorysort.bind(this)} >search by category</button>
                     </div>

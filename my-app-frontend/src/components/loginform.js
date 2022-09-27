@@ -33,8 +33,6 @@ class loginform extends Component {
           if(res.data.mail === user.mail && res.data.password === user.password){
             sessionStorage.setItem("user_id",res.data.id);
             sessionStorage.setItem("user_name",res.data.name);
-            sessionStorage.setItem("user_address",res.data.address);
-            sessionStorage.setItem("user_dob",res.data.dob);
             sessionStorage.setItem("user_mail",res.data.mail);
             sessionStorage.setItem("user_mobile",res.data.mobile);
             sessionStorage.setItem("user_role",res.data.role);

@@ -42,6 +42,12 @@ class mywinnings extends Component {
     }
 
     showProductPaymentCard(){
+
+        if(this.state.winner_id <= 0){
+            document.getElementById("catmsg").innerHTML = "please Select Category First To Filter Products";
+            return
+        }
+        document.getElementById("catmsg").innerHTML = "";
         document.getElementById("otherfilter").style.display = "block";
         trialservice.getWinnerByWinnerId(this.state.winner_id).then((res) => {
             this.setState({win: res.data});
@@ -77,7 +83,7 @@ class mywinnings extends Component {
                                 )
                             }
                     </select>
-                    <br/>
+                    <p id="catmsg" className='text-danger'></p>
                     <button type='button' className="btn btn-primary mb-2 d-inline" onClick={this.showProductPaymentCard.bind(this)} >SHOW</button>
                     <br/>
                 </div>

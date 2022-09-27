@@ -31,7 +31,11 @@ class addcategories extends Component {
     }
 
     addCategory(){
-
+        if(this.state.cat_name === ''){
+            document.getElementById("message").innerHTML = "category can not be empty";
+            return
+        }
+        document.getElementById("message").innerHTML = "";
         let category = {cat_id: this.state.cat_id,cat_name: this.state.cat_name};
         console.log(category);
         trialservice.createCategory(category).then((res) => {

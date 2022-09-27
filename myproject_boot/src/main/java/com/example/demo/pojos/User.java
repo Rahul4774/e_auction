@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Past;
-import org.hibernate.validator.constraints.UniqueElements;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -36,7 +35,6 @@ public class User {
 	@Column(length = 30)
 	@Email
 	@JsonProperty("mail")
-	@UniqueElements
 	private String mail;
 	
 	@Past(message = "date of birth must be in past")

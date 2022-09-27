@@ -15,7 +15,8 @@ class register extends Component {
             password:'',
             repassword:'',
             errormsg:'',
-            successmsg:''
+            successmsg:'',
+            role:'USER'
         }
     }
 
@@ -33,7 +34,7 @@ class register extends Component {
                         if(this.state.mobile){
                             if (this.state.password === this.state.repassword) {
                                 let user = {name: this.state.name, address: this.state.address, mail: this.state.mail, dob: this.state.dob,
-                                            mobile: this.state.mobile, password: this.state.password};
+                                            mobile: this.state.mobile, password: this.state.password, role: this.state.role};
                                 userService.getUserRegistered(user).then( res=>{
                                     this.state.successmsg = res.data;
                                     console.log(res.data);
@@ -84,7 +85,7 @@ class register extends Component {
                       </tr>
                       <tr>
                           <td>Mail</td>
-                          <td><input type="email" name="mail" minLength="7" maxLength="30" 
+                          <td><input type="text" name="mail" minLength="7" maxLength="30" 
                           value={this.state.mail} onChange={this.onChange} required /></td>
                       </tr>
                       <tr>
